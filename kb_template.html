@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="googlebot" content="noindex, nofollow">
+<title>Strive Recovery — Admissions Knowledge Base</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B3A6B; --navy-deep:#0e2347; --sky:#4BBDE8; --sky-light:#d4f0fb;
+  --white:#fff; --gray:#2D2D2D; --gray-light:#f4f6f9; --gray-mid:#e2e8f0;
+  --gray-text:#64748b; --border:#dde3ed;
+  --warn:#b45309; --warn-bg:#fef6e7; --warn-line:#f0b429;
+  --danger:#b91c1c; --danger-bg:#fdf0ef; --danger-line:#e88b84;
+  --ok:#15803d;
+}
+body{font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  background:var(--gray-light);color:var(--gray);min-height:100vh;-webkit-font-smoothing:antialiased}
+
+/* header */
+.header{background:var(--navy);padding:0 24px;position:sticky;top:0;z-index:100;
+  box-shadow:0 2px 12px rgba(0,0,0,.18)}
+.header-in{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:20px;height:62px}
+.logo{display:flex;align-items:center;gap:11px;flex-shrink:0}
+.logo-icon{width:34px;height:34px;background:var(--sky);border-radius:8px;display:flex;
+  align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:15px;
+  font-weight:700;color:var(--navy)}
+.logo-text{color:#fff;font-size:14px;font-weight:600;line-height:1.2}
+.logo-sub{color:var(--sky);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase}
+.search-wrap{flex:1;position:relative;max-width:520px}
+#q{width:100%;padding:9px 14px 9px 38px;border:none;border-radius:8px;
+  background:rgba(255,255,255,.13);color:#fff;font-family:'DM Sans',sans-serif;font-size:14px}
+#q::placeholder{color:rgba(255,255,255,.55)}
+#q:focus{outline:2px solid var(--sky);background:rgba(255,255,255,.2)}
+.search-ico{position:absolute;left:13px;top:50%;transform:translateY(-50%);
+  color:rgba(255,255,255,.6);pointer-events:none;font-size:14px}
+.menu-btn{display:none;background:rgba(255,255,255,.13);border:none;color:#fff;
+  border-radius:7px;padding:7px 11px;font-size:16px;cursor:pointer}
+
+/* layout */
+.layout{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:296px 1fr;
+  gap:26px;padding:26px 24px 80px;align-items:start}
+.side{position:sticky;top:88px;display:flex;flex-direction:column;gap:16px}
+.panel{background:#fff;border:1px solid var(--border);border-radius:10px;padding:15px}
+.panel h4{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--gray-text);margin-bottom:10px}
+.cat-btn{width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;
+  background:none;border:none;border-radius:7px;padding:7px 9px;cursor:pointer;text-align:left;
+  font-family:'DM Sans',sans-serif;font-size:13.5px;color:var(--gray);line-height:1.35}
+.cat-btn:hover{background:var(--gray-light)}
+.cat-btn.active{background:var(--navy);color:#fff}
+.cat-btn.active .cat-count{background:rgba(255,255,255,.22);color:#fff}
+.cat-btn b{font-family:'Space Mono',monospace;font-size:11px;color:var(--sky)}
+.cat-btn.active b{color:var(--sky-light)}
+.cat-count{font-family:'Space Mono',monospace;font-size:10.5px;background:var(--gray-light);
+  color:var(--gray-text);border-radius:20px;padding:1px 7px;flex-shrink:0}
+.tog{display:flex;align-items:center;gap:9px;padding:7px 4px;cursor:pointer;font-size:13.5px}
+.tog input{width:16px;height:16px;accent-color:var(--sky);cursor:pointer;flex-shrink:0}
+.seg{display:flex;gap:5px;flex-wrap:wrap}
+.seg button{flex:1;min-width:74px;background:var(--gray-light);border:1px solid var(--border);
+  border-radius:6px;padding:6px 8px;font-family:'DM Sans',sans-serif;font-size:12.5px;
+  color:var(--gray-text);cursor:pointer}
+.seg button.on{background:var(--navy);border-color:var(--navy);color:#fff}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:12px;margin-bottom:22px}
+.stat{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+.stat-n{font-family:'Space Mono',monospace;font-size:25px;font-weight:700;color:var(--navy);
+  line-height:1.1;font-variant-numeric:tabular-nums}
+.stat-l{font-size:11.5px;color:var(--gray-text);margin-top:3px;line-height:1.3}
+.stat.alert .stat-n{color:var(--warn)}
+
+.banner{background:var(--warn-bg);border-left:3px solid var(--warn-line);border-radius:8px;
+  padding:14px 18px;margin-bottom:22px;font-size:14px;line-height:1.6;color:#6b4708}
+.banner b{color:#5a3c06}
+
+.srchbar{display:none;background:var(--sky-light);border-radius:8px;padding:9px 14px;
+  margin-bottom:16px;font-size:13.5px;color:var(--navy)}
+.srchbar button{background:none;border:none;color:var(--navy);text-decoration:underline;
+  cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13.5px;margin-left:8px}
+
+/* sections + cards */
+.cat-section{margin-bottom:34px}
+.cat-head{display:flex;align-items:center;gap:13px;padding-bottom:11px;margin-bottom:14px;
+  border-bottom:2px solid var(--navy)}
+.cat-letter{width:30px;height:30px;background:var(--navy);color:#fff;border-radius:7px;
+  display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;
+  font-size:13px;font-weight:700;flex-shrink:0}
+.cat-head h2{font-size:18px;font-weight:600;color:var(--navy);letter-spacing:-.01em}
+.cat-head p{font-size:12.5px;color:var(--gray-text);margin-top:1px}
+.cat-head>div{flex:1;min-width:0}
+.cat-n{font-family:'Space Mono',monospace;font-size:11px;color:var(--gray-text);flex-shrink:0}
+
+.rule{background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px;
+  margin-bottom:11px;scroll-margin-top:88px}
+.rule.hit{box-shadow:0 0 0 2px var(--sky);border-color:var(--sky)}
+.rule-top{display:flex;align-items:flex-start;gap:11px;margin-bottom:8px}
+.rule-icon{font-size:17px;line-height:1.3;flex-shrink:0}
+.rule-title{font-size:15.5px;font-weight:600;color:var(--gray);line-height:1.4;flex:1;min-width:0}
+.rule-id{font-family:'Space Mono',monospace;font-size:10.5px;color:var(--gray-text);
+  background:var(--gray-light);border-radius:4px;padding:2px 6px;flex-shrink:0}
+.rule-meta{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:9px}
+.pill{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.07em;
+  text-transform:uppercase;padding:2px 7px;border-radius:4px;font-weight:700}
+.t-policy{background:#fdecec;color:#a32b2b}
+.t-process{background:#e8f1fd;color:#1e4d8f}
+.t-standard{background:#eaf7ef;color:#186c38}
+.t-system{background:#f2ecfd;color:#5b34a8}
+.t-reference{background:#f1f4f8;color:#4a5a6e}
+.pill-src{background:var(--gray-light);color:var(--gray-text);font-weight:400}
+.pill-unver{background:var(--warn-bg);color:var(--warn)}
+.rule-body{font-size:14px;line-height:1.65;color:#3d4654}
+.rule-body ul{margin:7px 0 0 18px}
+.rule-body li{margin-bottom:3px}
+.rule-body strong{color:var(--gray);font-weight:600}
+.rule-body br{content:"";display:block;margin-top:5px}
+
+.conflict{background:var(--danger-bg);border-left:3px solid var(--danger-line);
+  border-radius:0 6px 6px 0;padding:10px 13px;margin-top:11px}
+.conflict-head{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:5px}
+.conflict-tag{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.09em;
+  text-transform:uppercase;font-weight:700;color:var(--danger)}
+.xref{font-family:'Space Mono',monospace;font-size:11px;background:#fff;color:var(--danger);
+  border:1px solid var(--danger-line);border-radius:4px;padding:1px 6px;text-decoration:none}
+.xref:hover{background:var(--danger);color:#fff}
+.conflict-note{font-size:13px;line-height:1.55;color:#7a2620}
+
+.rule-src{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;padding-top:9px;
+  border-top:1px solid var(--gray-mid)}
+.chip{font-family:'Space Mono',monospace;font-size:10px;color:var(--gray-text);
+  background:var(--gray-light);border-radius:4px;padding:2px 7px}
+
+
+/* ask / answers */
+.ask{background:#fff;border:1px solid var(--border);border-left:3px solid var(--sky);
+  border-radius:10px;padding:16px 18px;margin-bottom:20px;display:none}
+.ask.on{display:block}
+.ask-head{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;margin-bottom:12px}
+.ask-tag{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.12em;
+  text-transform:uppercase;font-weight:700;color:var(--sky)}
+.ask-q{font-size:14px;color:var(--gray-text)}
+.ans{border-top:1px solid var(--gray-mid);padding:12px 0 2px}
+.ans:first-of-type{border-top:none;padding-top:0}
+.ans-top{display:flex;align-items:flex-start;gap:9px;margin-bottom:5px}
+.ans-rank{font-family:'Space Mono',monospace;font-size:10px;font-weight:700;color:#fff;
+  background:var(--navy);border-radius:4px;padding:2px 6px;flex-shrink:0;margin-top:2px}
+.ans-title{font-size:15px;font-weight:600;color:var(--gray);line-height:1.4;flex:1;min-width:0}
+.ans-snip{font-size:13.5px;line-height:1.6;color:#4a5464;margin-left:32px}
+.ans-foot{margin-left:32px;margin-top:7px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.ans-go{font-family:'Space Mono',monospace;font-size:10.5px;background:var(--gray-light);
+  border:1px solid var(--border);border-radius:4px;padding:2px 7px;color:var(--navy);
+  text-decoration:none;cursor:pointer}
+.ans-go:hover{background:var(--navy);color:#fff}
+.ans-src{font-family:'Space Mono',monospace;font-size:10px;color:var(--gray-text)}
+.ans-warn{margin-left:32px;margin-top:8px;background:var(--danger-bg);
+  border-left:3px solid var(--danger-line);border-radius:0 5px 5px 0;padding:8px 11px;
+  font-size:12.5px;line-height:1.5;color:#7a2620}
+.ans-warn b{color:var(--danger)}
+.ask-none{font-size:13.5px;color:var(--gray-text)}
+.ask-foot{margin-top:12px;padding-top:10px;border-top:1px solid var(--gray-mid);
+  font-size:11.5px;color:var(--gray-text);line-height:1.5}
+/* ---- embed mode (?embed=1): drop chrome the host page already provides ---- */
+html.embed .logo{display:none}
+html.embed .search-wrap{max-width:none}
+html.embed .header{position:static;box-shadow:none;padding:0 16px}
+html.embed .header-in{height:52px;gap:12px}
+html.embed .stats{display:none}
+html.embed .layout{padding:14px 16px 40px;gap:18px}
+html.embed .side{top:14px}
+html.embed .banner{margin-bottom:16px;font-size:13px;padding:11px 14px}
+html.embed .foot{padding:0 16px 20px;font-size:11px}
+.openfull{display:none}
+html.embed .openfull{display:inline-flex;align-items:center;gap:5px;flex-shrink:0;
+  background:rgba(255,255,255,.13);color:#fff;text-decoration:none;border-radius:7px;
+  padding:6px 11px;font-family:'Space Mono',monospace;font-size:11px;white-space:nowrap}
+html.embed .openfull:hover{background:var(--sky);color:var(--navy)}
+@media (max-width:1024px){
+  html.embed .layout{padding:10px 10px 30px}
+}
+
+mark{background:#fff3a3;color:inherit;border-radius:2px;padding:0 1px}
+.hidden{display:none!important}
+.empty{background:#fff;border:1px dashed var(--border);border-radius:10px;padding:40px 20px;
+  text-align:center;color:var(--gray-text);font-size:14px}
+.foot{max-width:1400px;margin:0 auto;padding:0 24px 40px;font-size:12px;color:var(--gray-text);
+  line-height:1.7}
+
+@media (max-width:1024px){
+  .layout{grid-template-columns:1fr;padding:16px 16px 60px;gap:16px}
+  .side{position:static;order:-1}
+  .side.collapsed{display:none}
+  .menu-btn{display:block}
+  .header-in{gap:12px}
+  .logo-text,.logo-sub{display:none}
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-in">
+    <div class="logo">
+      <div class="logo-icon">SR</div>
+      <div><div class="logo-text">Strive Recovery</div>
+      <div class="logo-sub">Admissions Knowledge Base</div></div>
+    </div>
+    <div class="search-wrap">
+      <span class="search-ico">&#9906;</span>
+      <input id="q" type="search" placeholder="Ask a question — e.g. caller has Medicare and Medicaid" autocomplete="off">
+    </div>
+    <a class="openfull" id="openfull" href="#" target="_blank" rel="noopener">Open full page &#8599;</a>
+    <button class="menu-btn" id="menu" aria-label="Toggle filters">&#9776;</button>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="side" id="side">
+    <div class="panel">
+      <h4>Source</h4>
+      <div class="seg" id="srcseg">
+        <button class="on" data-src="all">All</button>
+        <button data-src="sop">SOP</button>
+        <button data-src="meet">Meeting</button>
+      </div>
+    </div>
+    <div class="panel">
+      <h4>Show only</h4>
+      <label class="tog"><input type="checkbox" id="fconf"> Rules with a conflict</label>
+      <label class="tog"><input type="checkbox" id="funv"> Unverified rules</label>
+    </div>
+    <div class="panel">
+      <h4>Categories</h4>
+      <!--SIDEBAR-->
+    </div>
+  </aside>
+
+  <main id="main">
+    <div class="stats">
+      <div class="stat"><div class="stat-n">{{TOTAL}}</div><div class="stat-l">Rules captured</div></div>
+      <div class="stat"><div class="stat-n">{{SOP}}</div><div class="stat-l">From SOP documents</div></div>
+      <div class="stat alert"><div class="stat-n">{{CONFLICTS}}</div><div class="stat-l">Flagged for review</div></div>
+      <div class="stat alert"><div class="stat-n">{{UNVERIFIED}}</div><div class="stat-l">Unverified</div></div>
+      <div class="stat"><div class="stat-n">{{CATS}}</div><div class="stat-l">Categories</div></div>
+    </div>
+
+    <div class="banner">
+      <b>This is a review copy, not training material.</b> It merges rules drawn from 22 SOP documents with rules
+      drawn from email and meeting history. Where two rules disagree, both are shown with a red flag naming the
+      rules they collide with &mdash; click a rule ID to jump to it. Nothing here should be issued to a new hire
+      until the flagged items are resolved.
+    </div>
+
+    <div class="ask" id="ask">
+      <div class="ask-head"><span class="ask-tag">Best answers</span><span class="ask-q" id="askq"></span></div>
+      <div id="anslist"></div>
+      <div class="ask-foot">Ranked from the rules themselves &mdash; no summarising, no paraphrase. Open the rule to read the full policy and its source.</div>
+    </div>
+
+    <div class="srchbar" id="srchbar">
+      <span id="srchtxt"></span><button id="clr">Clear</button>
+    </div>
+
+    <!--CONTENT-->
+
+    <div class="empty hidden" id="empty">No rules match those filters.</div>
+  </main>
+</div>
+
+<div class="foot">
+  Compiled 28 August 2026 &middot; Provident Healthcare Consulting &middot; Sources: 22 admissions SOP documents,
+  plus email and meeting history June&ndash;August 2026. Contains no patient information. Staff names replaced with role titles.
+</div>
+
+<script>
+(function(){
+  var p = new URLSearchParams(window.location.search);
+  if (p.get('embed') === '1' || p.get('embed') === 'true') {
+    document.documentElement.classList.add('embed');
+    var a = document.getElementById('openfull');
+    if (a) {
+      var u = window.location.href.replace(/([?&])embed=(1|true)(&|$)/, '$1').replace(/[?&]$/, '');
+      a.setAttribute('href', u);
+    }
+  }
+})();
+(function(){
+  var rules = Array.prototype.slice.call(document.querySelectorAll('.rule'));
+  var sections = Array.prototype.slice.call(document.querySelectorAll('.cat-section'));
+  var catBtns = Array.prototype.slice.call(document.querySelectorAll('.cat-btn'));
+  var srcBtns = Array.prototype.slice.call(document.querySelectorAll('#srcseg button'));
+  var q = document.getElementById('q');
+  var fconf = document.getElementById('fconf');
+  var funv = document.getElementById('funv');
+  var bar = document.getElementById('srchbar');
+  var barTxt = document.getElementById('srchtxt');
+  var empty = document.getElementById('empty');
+  var ask = document.getElementById('ask');
+  var askq = document.getElementById('askq');
+  var anslist = document.getElementById('anslist');
+
+  var cat = 'all', src = 'all', term = '';
+
+  var STOP = {'a':1,'an':1,'the':1,'is':1,'are':1,'was':1,'be':1,'been':1,'do':1,'does':1,'did':1,
+    'i':1,'we':1,'you':1,'my':1,'our':1,'it':1,'its':1,'to':1,'of':1,'in':1,'on':1,'at':1,'for':1,
+    'with':1,'and':1,'or':1,'if':1,'that':1,'this':1,'there':1,'they':1,'them':1,'what':1,'when':1,
+    'how':1,'why':1,'who':1,'which':1,'can':1,'should':1,'would':1,'need':1,'needs':1,'have':1,
+    'has':1,'get':1,'got':1,'me':1,'us':1,'about':1,'from':1,'as':1,'by':1,'so':1,'am':1,'not':1};
+
+  var SYN = {
+    'medicare':['medicare','dual'],
+    'medicaid':['medicaid','hip','caresource','mhs','gainwell','ascentra'],
+    'ama':['ama','against','advice','discharge'],
+    'asa':['asa','against','staff','advice'],
+    'vob':['vob','verification','verify','benefits','waystar','availity'],
+    'verify':['verify','verification','vob'],
+    'loc':['loc','level','care'],
+    'bcbs':['bcbs','anthem','blue','cross','commercial'],
+    'anthem':['anthem','bcbs','prefix','ybx','sap','efe','eum'],
+    'pa':['pa','pre','assessment'],
+    'pe':['pe','presumptive','eligibility'],
+    'ctm':['ctm','call','tracking','tag'],
+    'dnr':['dnr','return','barred'],
+    'bed':['bed','board','waitlist','census','availability'],
+    'waitlist':['waitlist','wait','bed','board'],
+    'score':['score','star','tag'],
+    'crisis':['crisis','suicide','harm','overdose','safety','988','911'],
+    'suicide':['suicide','harm','crisis','safety','ideation'],
+    'overdose':['overdose','narcan','naloxone','breathing','911','unresponsive'],
+    'couple':['couple','partner','relationship'],
+    'couples':['couple','partner','relationship'],
+    'alumni':['alumni','return','dnr'],
+    'registry':['registry','offender','nsopw','screening'],
+    'offender':['offender','registry','nsopw','screening'],
+    'shift':['shift','report','handoff'],
+    'answer':['answer','greeting','intake','hello'],
+    'greeting':['greeting','answer','intake'],
+    'say':['say','script','greeting','wording'],
+    'phone':['phone','call'],
+    'work':['work','job','employment','pass'],
+    'marijuana':['marijuana','cannabis','thc'],
+    'transport':['transport','uber','pickup','ride'],
+    'deductible':['deductible','pocket','quote'],
+    'referral':['referral','source','hospital','court'],
+    'sunwave':['sunwave','crm','opportunity','face','sheet'],
+    'hold':['hold','wait']
+  };
+
+  function stem(w){
+    if (w.length > 5 && w.slice(-3) === 'ing') return w.slice(0,-3);
+    if (w.length > 5 && w.slice(-2) === 'ed')  return w.slice(0,-2);
+    if (w.length > 4 && w.slice(-2) === 'es')  return w.slice(0,-2);
+    if (w.length > 4 && w.slice(-1) === 's' && w.slice(-2) !== 'ss') return w.slice(0,-1);
+    return w;
+  }
+
+  function tokens(s){
+    var raw = s.toLowerCase().replace(/[^a-z0-9. ]+/g,' ').split(/\s+/);
+    var out = [], seen = {};
+    for (var i=0;i<raw.length;i++){
+      var t = raw[i];
+      if (!t || STOP[t]) continue;
+      if (t.length < 2 && !/^[0-9]$/.test(t)) continue;
+      var list = SYN[t] || [t];
+      for (var j=0;j<list.length;j++){
+        var w = stem(list[j]);
+        if (!seen[w]){ seen[w]=1; out.push({w:w, primary:(j===0)}); }
+      }
+    }
+    return out;
+  }
+
+  var idx = [];
+  for (var i=0;i<rules.length;i++){
+    var r = rules[i];
+    var titleEl = r.querySelector('.rule-title');
+    var bodyEl = r.querySelector('.rule-body');
+    var noteEl = r.querySelector('.conflict-note');
+    var bt = bodyEl ? bodyEl.textContent : '';
+    idx.push({
+      el: r,
+      id: r.id,
+      title: titleEl ? titleEl.textContent : '',
+      titleLow: (titleEl ? titleEl.textContent : '').toLowerCase(),
+      bodyLow: bt.toLowerCase(),
+      bodyText: bt,
+      len: Math.max(60, bt.length),
+      conflict: (r.getAttribute('data-flags')||'').indexOf('conflict') !== -1,
+      note: noteEl ? noteEl.textContent : '',
+      refs: Array.prototype.slice.call(r.querySelectorAll('.xref')).map(function(a){return a.textContent;}),
+      srcKind: r.getAttribute('data-src')
+    });
+  }
+
+  function count(hay, w){
+    var n = 0, p = 0;
+    while (true){
+      var k = hay.indexOf(w, p);
+      if (k === -1) break;
+      n++; p = k + w.length;
+    }
+    return n;
+  }
+
+  function rank(text){
+    var ts = tokens(text);
+    if (!ts.length) return [];
+    var phrase = text.toLowerCase().trim();
+    var scored = [];
+    for (var i=0;i<idx.length;i++){
+      var d = idx[i], s = 0, matched = 0;
+      for (var j=0;j<ts.length;j++){
+        var w = ts[j].w, weight = ts[j].primary ? 1 : 0.45;
+        var tc = count(d.titleLow, w);
+        var bc = count(d.bodyLow, w);
+        if (tc || bc) matched++;
+        s += weight * (tc * 12 + Math.min(bc, 6) * 3);
+      }
+      if (phrase.length > 8 && d.titleLow.indexOf(phrase) !== -1) s += 30;
+      if (phrase.length > 8 && d.bodyLow.indexOf(phrase) !== -1) s += 12;
+      s = s * (1 + matched / (ts.length * 2));
+      s = s / (1 + Math.log(d.len / 200 + 1));
+      if (s > 0) scored.push({d:d, s:s, matched:matched});
+    }
+    scored.sort(function(a,b){ return b.s - a.s; });
+    return scored;
+  }
+
+  function snippet(d, ts){
+    var body = d.bodyText;
+    var low = d.bodyLow, best = -1;
+    for (var i=0;i<ts.length;i++){
+      var k = low.indexOf(ts[i].w);
+      if (k !== -1 && (best === -1 || k < best)) best = k;
+    }
+    var start = best === -1 ? 0 : Math.max(0, best - 70);
+    var end = Math.min(body.length, start + 260);
+    var out = body.slice(start, end).trim();
+    if (start > 0) out = '\u2026' + out;
+    if (end < body.length) out = out + '\u2026';
+    return out;
+  }
+
+  function esc(s){
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function renderAnswers(text){
+    var scored = rank(text);
+    var ts = tokens(text);
+    if (!scored.length || scored[0].s < 6 || ts.length < 1){
+      ask.classList.remove('on');
+      anslist.innerHTML = '';
+      return;
+    }
+    var top = scored.slice(0, 3).filter(function(x){ return x.s >= scored[0].s * 0.35; });
+    askq.textContent = '\u201c' + text.trim() + '\u201d';
+
+    var html = '';
+    for (var i=0;i<top.length;i++){
+      var d = top[i].d;
+      html += '<div class="ans">';
+      html += '<div class="ans-top"><span class="ans-rank">' + (i+1) + '</span>';
+      html += '<span class="ans-title">' + esc(d.title) + '</span></div>';
+      html += '<div class="ans-snip">' + esc(snippet(d, ts)) + '</div>';
+      if (d.conflict){
+        var refTxt = d.refs.length ? ' It disagrees with ' + esc(d.refs.join(', ')) + '.' : '';
+        html += '<div class="ans-warn"><b>The rules disagree on this.</b>' + refTxt +
+                ' ' + esc(d.note) + ' Confirm with a supervisor before acting on it.</div>';
+      }
+      html += '<div class="ans-foot"><a class="ans-go" data-goto="' + esc(d.id) + '" href="#' + esc(d.id) + '">Open ' + esc(d.id) + '</a>';
+      html += '<span class="ans-src">' + (d.srcKind === 'sop' ? 'SOP document' : 'Email / meeting') + '</span></div>';
+      html += '</div>';
+    }
+    anslist.innerHTML = html;
+    ask.classList.add('on');
+  }
+
+  function stripMarks(el){
+    if (!el) return;
+    var m = el.querySelectorAll('mark');
+    for (var i = 0; i < m.length; i++){
+      var t = m[i];
+      t.parentNode.replaceChild(document.createTextNode(t.textContent), t);
+    }
+    el.normalize();
+  }
+
+  function markUp(el, t){
+    if (!el) return;
+    var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
+    var nodes = [], n;
+    while ((n = walker.nextNode())) nodes.push(n);
+    for (var i = 0; i < nodes.length; i++){
+      var node = nodes[i];
+      var low = node.textContent.toLowerCase();
+      var k = low.indexOf(t);
+      if (k === -1) continue;
+      var after = node.splitText(k);
+      after.splitText(t.length);
+      var mk = document.createElement('mark');
+      mk.appendChild(document.createTextNode(after.textContent));
+      after.parentNode.replaceChild(mk, after);
+    }
+  }
+
+  function apply(){
+    var shown = 0;
+    var ts = term ? tokens(term) : [];
+    for (var i = 0; i < rules.length; i++){
+      var r = rules[i];
+      stripMarks(r.querySelector('.rule-title'));
+      stripMarks(r.querySelector('.rule-body'));
+      var flags = r.getAttribute('data-flags') || '';
+      var ok = true;
+      if (cat !== 'all' && r.getAttribute('data-cat') !== cat) ok = false;
+      if (ok && src !== 'all' && r.getAttribute('data-src') !== src) ok = false;
+      if (ok && fconf.checked && flags.indexOf('conflict') === -1) ok = false;
+      if (ok && funv.checked && flags.indexOf('unverified') === -1) ok = false;
+      if (ok && term){
+        var hay = r.textContent.toLowerCase();
+        var any = false;
+        for (var t = 0; t < ts.length; t++){ if (hay.indexOf(ts[t].w) !== -1){ any = true; break; } }
+        if (!any) ok = false;
+      }
+      if (ok){
+        r.classList.remove('hidden');
+        shown++;
+        if (term){
+          for (var m = 0; m < ts.length; m++){
+            if (!ts[m].primary) continue;
+            markUp(r.querySelector('.rule-title'), ts[m].w);
+            markUp(r.querySelector('.rule-body'), ts[m].w);
+          }
+        }
+      } else {
+        r.classList.add('hidden');
+      }
+    }
+    for (var s = 0; s < sections.length; s++){
+      var vis = sections[s].querySelectorAll('.rule:not(.hidden)').length;
+      sections[s].classList.toggle('hidden', vis === 0);
+    }
+    empty.classList.toggle('hidden', shown !== 0);
+    if (term){
+      bar.style.display = 'block';
+      barTxt.textContent = shown + ' of ' + rules.length + ' rules mention this';
+    } else {
+      bar.style.display = 'none';
+    }
+  }
+
+  for (var a = 0; a < catBtns.length; a++){
+    catBtns[a].addEventListener('click', function(){
+      for (var b = 0; b < catBtns.length; b++) catBtns[b].classList.remove('active');
+      this.classList.add('active');
+      cat = this.getAttribute('data-cat');
+      apply();
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+  }
+  for (var c = 0; c < srcBtns.length; c++){
+    srcBtns[c].addEventListener('click', function(){
+      for (var d = 0; d < srcBtns.length; d++) srcBtns[d].classList.remove('on');
+      this.classList.add('on');
+      src = this.getAttribute('data-src');
+      apply();
+    });
+  }
+
+  var timer = null;
+  q.addEventListener('input', function(){
+    var v = this.value;
+    term = v.trim().toLowerCase();
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(function(){
+      apply();
+      if (term.length >= 3) renderAnswers(v); else { ask.classList.remove('on'); anslist.innerHTML=''; }
+    }, 130);
+  });
+
+  fconf.addEventListener('change', apply);
+  funv.addEventListener('change', apply);
+  document.getElementById('clr').addEventListener('click', function(){
+    q.value = ''; term = ''; ask.classList.remove('on'); anslist.innerHTML=''; apply();
+  });
+  document.getElementById('menu').addEventListener('click', function(){
+    document.getElementById('side').classList.toggle('collapsed');
+  });
+
+  document.addEventListener('click', function(e){
+    var a = e.target.closest ? e.target.closest('[data-goto]') : null;
+    if (!a) return;
+    e.preventDefault();
+    var id = a.getAttribute('data-goto');
+    var target = document.getElementById(id);
+    if (!target) return;
+    if (target.classList.contains('hidden')){
+      for (var b = 0; b < catBtns.length; b++) catBtns[b].classList.remove('active');
+      catBtns[0].classList.add('active');
+      cat = 'all';
+      for (var d = 0; d < srcBtns.length; d++) srcBtns[d].classList.remove('on');
+      srcBtns[0].classList.add('on');
+      src = 'all';
+      fconf.checked = false; funv.checked = false;
+      q.value = ''; term = '';
+      apply();
+    }
+    target.scrollIntoView({behavior: 'smooth', block: 'center'});
+    var hits = document.querySelectorAll('.rule.hit');
+    for (var h = 0; h < hits.length; h++) hits[h].classList.remove('hit');
+    target.classList.add('hit');
+  });
+
+  if (window.location.hash){
+    var t0 = document.getElementById(window.location.hash.slice(1));
+    if (t0) { t0.scrollIntoView({block: 'center'}); t0.classList.add('hit'); }
+  }
+
+  apply();
+})();
+</script>
+</body>
+</html>
